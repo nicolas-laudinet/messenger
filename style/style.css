@@ -74,14 +74,25 @@ header {
 
 .main-slide#main {
   display: flex;
-  animation-duration: .5s;
+  animation-duration: 1s;
   animation-name: slide;
+  animation-timing-function: ease-in-out;
 }
 
 @keyframes slide {
   0% {
     transform: translateY(-100%);
   }
+
+  75% {
+    transform: translateY(10%);
+  }
+
+  85% {
+    transform: translateY(10%);
+  }
+
+
   100% {
     transform: translateY(0);
   }
