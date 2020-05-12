@@ -1,0 +1,88 @@
+header {
+  height: 55px;
+  background-color: #fff;
+  z-index: 3;
+  position: relative;
+}
+
+#main {
+  z-index: 1;
+  /*transform: translateY(-100%);*/
+  top: 0;
+  left: 50%;
+
+  height: 300px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+  background-color: #eee;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: none;
+}
+
+.connection-title {
+  font-size: 2em;
+}
+
+#pseudo {
+  height: 70px;
+  width: 400px;
+  font-size: 3em;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+#pseudo:focus {
+  outline: none;
+}
+
+.form-el {
+  margin-bottom: 10px;
+}
+
+.connexion-btn {
+  height: calc(100vh - 55px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: -10;
+}
+
+.connexion-btn button {
+  height: 100px;
+  width: 400px;
+  font-size: 3em;
+  transition: all .5s ease;
+}
+
+.connexion-clicked {
+  opacity: 0;
+}
+
+.connexion-hidden {
+  display: none;
+}
+
+.main-slide#main {
+  display: flex;
+  animation-duration: .5s;
+  animation-name: slide;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
