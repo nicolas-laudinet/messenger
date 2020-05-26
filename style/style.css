@@ -7,11 +7,10 @@ header {
 
 #main {
   z-index: 1;
-  /*transform: translateY(-100%);*/
   top: 0;
   left: 50%;
 
-  height: 300px;
+  /*height: 300px;*/
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -22,13 +21,20 @@ header {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   display: none;
+  max-width: 100%;
 }
 
 .connection-title {
   font-size: 2em;
 }
 
-#pseudo {
+.inscription input, .inscription label {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+#pseudo, #password, #email {
   height: 70px;
   width: 400px;
   font-size: 3em;
@@ -37,7 +43,7 @@ header {
   text-align: center;
 }
 
-#pseudo:focus {
+#pseudo:focus, #password:focus, #email:focus {
   outline: none;
 }
 
@@ -76,7 +82,7 @@ header {
   display: flex;
   animation-duration: 1s;
   animation-name: slide;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease;
 }
 
 @keyframes slide {
@@ -84,16 +90,83 @@ header {
     transform: translateY(-100%);
   }
 
-  75% {
+  20% {
     transform: translateY(10%);
   }
 
-  85% {
-    transform: translateY(10%);
+
+  70% {
+    transform: translateY(-10%);
   }
 
 
   100% {
     transform: translateY(0);
   }
+}
+
+.chat-box {
+  height: calc(100vh - 110px);
+  width: 100%;
+  background-color: #eee;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: relative;
+  padding-top: 1px;
+}
+
+.chat-conv {
+  background-color: white;
+  margin: 20px;
+  overflow-y: scroll;
+}
+
+.message {
+  font-size: 2.5em;
+  padding:5px;
+  position: relative;
+}
+
+.message-container {
+  margin: 10px 10px 0;
+}
+
+.received .message {
+  background-color: #EEE;
+}
+
+.sent .message {
+  background-color: #007BFF;
+  color: white;
+}
+
+.sent {
+  right: 0;
+}
+
+.received {
+  left: 0;
+}
+
+.date {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: .3em;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.chat-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.chat-form textarea {
+  flex-grow: 1;
+}
+
+.chat-form input {
+  margin-left: 20px;
 }
