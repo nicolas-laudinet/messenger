@@ -1,14 +1,32 @@
+<?php require('db-connection.php'); ?>
+
 <?php
+//initie la session avec le pseudo utilisateur
 $pseudo = '?';
 session_start();
 if(isset($_SESSION['pseudo'])) $pseudo = $_SESSION['pseudo'];
+?>
 
-require('db-connection.php');
+<?php
+//Enregistre le message
+if(isset($_POST['submit']) && !empty($_POST['body'])) {
+  $statement = $pdo->prepare("INSERT INTO messages (author, body) VALUES (:author, :body)");
+  $statement->execute(array(
+    'author' => $_SESSION['pseudo'],
+    'body' => $_POST['body']
+  ));
+}
+?>
+
+<?php
+//Charge les messages
 $statement = $pdo->prepare('SELECT * FROM messages ORDER BY sent_at');
 $statement->execute();
 $messages = $statement->fetchAll();
-
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -39,8 +57,7 @@ $messages = $statement->fetchAll();
                         <p><?= $message['body'] ?></p>
                         <span class="date"><?= $message['sent_at'] ?></span>
                       </div>
-                      <span>- </span>
-                      <span class="author">Me</span>
+                      <span class="author text-primary">Me</span>
                     </div>
 
               <?php } else { ?>
@@ -50,7 +67,6 @@ $messages = $statement->fetchAll();
                   <p><?= $message['body'] ?></p>
                   <span class="date"><?= $message['sent_at'] ?></span>
                 </div>
-                <span>- </span>
                 <span class="author"><?= $message['author'] ?></span>
               </div>
 
@@ -63,7 +79,7 @@ $messages = $statement->fetchAll();
       <div class="col-md-12 chat-form-container">
 
         <form class="chat-form" method="post">
-          <textarea class="textarea" name="body" rows="3" cols="80"></textarea>
+          <textarea name="body" class="textarea" name="body" rows="3" cols="80"></textarea>
           <input class="btn btn-primary" type="submit" name="submit" value="Envoyer">
         </form>
 
